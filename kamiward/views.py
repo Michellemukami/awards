@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect
 import datetime as dt
 from .models import Project,NewsLetterRecipients,Profile
-from .forms import NewArticleForm,NewsLetterForm
+from .forms import NewProjectForm,NewsLetterForm,NewsProfileForm
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .email import send_welcome_email
 from django.http import JsonResponse
@@ -19,9 +19,9 @@ from django.contrib.auth.models import User
 
 @login_required(login_url='/accounts/login/')
 def home(request):
-    current_user =request.user
-    posts = Image.objects.all()
-    profile = Profile.objects.get(username=current_user)
+    user =request.user
+    posts = Project.objects.all()
+    profile = Profile.objects.get(username=user)
     users = Profile.objects.all()
     views = Profile.objects.all()
     to_follow = User.objects.all().exclude(id=request.user.id)
@@ -62,7 +62,7 @@ def profile(request):
 def new_article(request):
     current_user = request.user
     if request.method == 'POST':
-        form = NewArticleForm(request.POST, request.FILES)
+        form = NewProjectForm(request.POST, request.FILES)
         if form.is_valid():
             article = form.save(commit=False)
             article.editor = current_user
@@ -70,13 +70,13 @@ def new_article(request):
         return redirect('user')
 
     else:
-        form = NewArticleForm()
+        form = NewProjectForm()
     return render(request, 'new-article.html', {"form": form}) 
 @login_required(login_url='/accounts/login/')
 def user(request):
     user = request.user
     profile = Profile.objects.get(username=user)
-    posts=Image.objects.filter(id=user.id)
+    posts=Project.objects.filter(id=user.id)
     return render(request, 'user-post.html',{"profile":profile,"posts":posts})
 @login_required(login_url='/accounts/login/')
 def comment(request):
@@ -167,3 +167,13 @@ class UserDescription(APIView):
         user = self.get_user(pk)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+@login_required(login_url='/accounts/login/')
+def newsletter(request):
+    name = request.POST.get('your_name')
+    email = request.POST.get('email')
+
+    recipient = NewsLetterRecipients(name=name, email=email)
+    recipient.save()
+    send_welcome_email(name, email)
+    data = {'success': 'You have been successfully added to mailing list'}
+    return JsonResponse(data)

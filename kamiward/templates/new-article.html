@@ -18,8 +18,8 @@
 
 <body>
   <div class="container">
-    <h1 class="text-center" style="font-family:'Lobster Two',sans-serif">Instapic</h1>
-    <form  action="{%url 'new-article'%}" method="post" enctype="multipart/form-data">
+    <h1 class="text-center" style="font-family:'Lobster Two',sans-serif">Projects</h1>
+    <form  action="{%url 'newsarticle'%}" method="post" enctype="multipart/form-data">
       {%csrf_token%}
 
       {% bootstrap_form form %}

@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'awards.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'award',
+        'NAME': 'awardz',
         'USER': 'kami',
     'PASSWORD':'kami',
     }
@@ -136,7 +136,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Email configurations remember to install python-decouple
 
-LOGIN_REDIRECT_URL= '/home/'
+
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT')
@@ -147,5 +147,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
-
+LOGIN_REDIRECT_URL= '/new/profile'
 django_heroku.settings(locals())

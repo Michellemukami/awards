@@ -32,33 +32,38 @@
             <div class="row"style="padding:0 4px;">
             {% for post in posts %}
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"style="padding:0 4px;flex-wrap: wrap;">
-              <img style="width:90%; border-radius:25px " src="{{post.insta_image.url}}" alt="images" data-toggle="modal" data-target="#{{post.image_name}}">
+              <img style="width:90%; border-radius:25px " src="{{post.project_image.url}}" alt="images" data-toggle="modal" data-target="#{{post.title}}">
             
               
             </div>
           </div>
         
-              <div id="{{post.image_name}}" class="modal fade bd-example-modal-lg " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div id="{{post.title}}" class="modal fade bd-example-modal-lg " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                   <div class="modal-content">
                       <div class="modal-header">
          
-                      <h3 class="modal-title" id="exampleModalCenterTitle">{{post.image_name}}</h3>
+                      <h3 class="modal-title" id="exampleModalCenterTitle">{{post.title}}</h3>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
                           
-                      <img style="width:70%;   display: block;
+                      <img style="width:70%; display: block;
                       margin-left: auto;
                       margin-right: auto;
-                      "src="{{post.insta_image.url}}" alt="check"><br>
-                          <h4>Image caption</h4><br>
-                          <p>{{post.image_caption}}</p><br>
+                      "src="{{post.project_image.url}}" alt="check"class="rounded-circle"><br>
+                          <h4>Image Title</h4><br>
+                          <p>{{post.title}}</p><br>
                         <hr>
-                        <li class="list-group-item"><i class="far fa-comment"></i><i class="far fa-heart">{{post.like}}</i></li>
+                        <h4>Image Description</h4><br>
+                        <p>{{post.post}}</p><br>
+                      <hr>
+                      <h4>Image Date posted</h4><br>
+                          <p>{{post.pub_date}}</p><br>
+                        <hr>
                       </div><br><br>
                     </div>
                   </div>

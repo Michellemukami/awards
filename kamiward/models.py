@@ -15,12 +15,13 @@ class Profile(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=60)
     post = HTMLField()
-    editor = models.ForeignKey(User,on_delete=models.CASCADE)
+    profile = models.ForeignKey(User,on_delete=models.CASCADE, null=False,default=1)
+    user = models.ForeignKey(Profile)
     pub_date = models.DateTimeField(auto_now_add=True)
     project_image = models.ImageField(upload_to='project/', blank=True)
-
+    url= models.CharField(max_length=100)
     def __str__(self):
-        return self.image_name
+        return self.title
     def save_Project(self):
         self.save()
 
