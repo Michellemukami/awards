@@ -1,14 +1,16 @@
 from django import forms
-from .models import Article,MoringaMerch
+from .models import Project,Profile
 
 class NewsLetterForm(forms.Form):
     your_name = forms.CharField(label='First Name',max_length=30)
     email = forms.EmailField(label='Email')
 
-class NewArticleForm(forms.ModelForm):
+class NewProjectForm(forms.ModelForm):
     class Meta:
-        model = Article
+        model = Project
         exclude = ['editor', 'pub_date']
-        widgets = {
-            'tags': forms.CheckboxSelectMultiple(),
-        }
+      
+class NewsProfileForm(forms.ModelForm):
+     class Meta:
+        model = Profile
+        exclude = ['user_id']
