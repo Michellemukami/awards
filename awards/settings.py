@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'kamiward.apps.KamiwardConfig',
     'tinymce',
-    'bootstrap3',
+    'bootstrap3',    
+    'rest_framework.authtoken',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
