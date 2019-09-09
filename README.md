@@ -7,7 +7,7 @@ This is an application that enables a authenticated user to post projects for ot
 ## Cloning and running
 Clone the application using git clone(this copies the app onto your device). In your terminal:
 
-  ```  $ git clone https://github.com/Michellemukami/insta-clone ```
+  ```  $ git clone https://github.com/Michellemukami/awards ```
   
   ```  $ cd Awards```
 
@@ -32,9 +32,9 @@ NO known Bugs.
 
 | Behaviour    | Input     | Output|
 | :------------- | :------------- |:---------|
-|   View all images from database    |     Image is saved in a database | Image from database|
+|   View all projects from database    |     Project is saved in a database | Project retieved from database|
 |Search form a category|Name of category|Display category|
-|Show more info of image when clicked |Click image|Display image details|
+|Vote on project when clicked |Click image|Vote on image|
 
 
 ##Technologies Used
