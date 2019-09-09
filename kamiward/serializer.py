@@ -9,4 +9,4 @@ class AwardSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('id', 'username', 'gender', 'bio','profile_image','user_id')
+        fields = ( 'username', 'gender', 'bio','profile_image','user_id')

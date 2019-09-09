@@ -3,7 +3,12 @@
 {% block content %}
 {{block.super}}
 <br><br><br>
+<style>
+.checked {
+  color: orange;
+}</style>
   <div class="container">
+      <marquee behavior="alternate" scrollamount="5" style="font-family:'Lobster Two',sans-serif;font-size: 7em">Click image for more information</marquee>
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <img style="width:50%;   display: block;
@@ -13,7 +18,7 @@
       </div>
       <div class="col-md-6 col-sm-12">
       <div class="yass">
-        <div class="ok">
+        <div class="me">
           <b>{{profile.username}}</b>
         </div>
         <div class="button">
@@ -51,9 +56,10 @@
                       </div>
                       <div class="modal-body">
                           
-                      <img style="width:70%; display: block;
+                      <img style="width:50%;   display: block;
                       margin-left: auto;
                       margin-right: auto;
+                      border-radius: 50%;height: 50%;
                       "src="{{post.project_image.url}}" alt="check"class="rounded-circle"><br>
                           <h4>Image Title</h4><br>
                           <p>{{post.title}}</p><br>
@@ -64,6 +70,12 @@
                       <h4>Image Date posted</h4><br>
                           <p>{{post.pub_date}}</p><br>
                         <hr>
+                        <strong>Rating overall:</strong><ul class=""><b><span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span></ul>
+          
                       </div><br><br>
                     </div>
                   </div>
@@ -83,6 +95,38 @@
           <style>
             body{font-family :'Gentium Basic', serif;
             }
+            .footer{
+  background-color:lightblue;
+}
             </style>
-
+ <footer>
+  <div class="footer">
+<div class="container">
+  
+<div class= "row">
+  <div class="col-md-4">
+ 
+<h1 style="font-family:'Lobster Two',sans-serif">
+  API
+</h1>
+<a href="http://127.0.0.1:8000/api/profile/Profile">Profile</a>
+<br>
+<a href="http://127.0.0.1:8000/api/project/">Projects</a>
+</div>
+<div class="col-md-4">
+  <h1 style="font-family:'Lobster Two',sans-serif">
+    Contact us
+  </h1>
+  <p>Contacts</p>
+</div>
+<div class="col-md-4">
+    <h1 style="font-family:'Lobster Two',sans-serif">
+      Know more of API
+    </h1>
+    <p>Know more</p>
+  </div>
+</div>
+</div>
+</div>
+</footer>
 {% endblock %}

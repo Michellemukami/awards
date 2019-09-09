@@ -24,18 +24,20 @@ def home(request):
     profile = Profile.objects.get(username=user)
     users = Profile.objects.all()
     views = Profile.objects.all()
+    form = NewsLetterForm()
     to_follow = User.objects.all().exclude(id=request.user.id)
-    return render(request, 'home.html', {"posts":posts,"profile":profile, "users":users,"views":to_follow, })
+    return render(request, 'home.html', {"posts":posts,"profile":profile, "users":users,"views":to_follow,"letterForm": form })
 
 # Create your views here.
 def login_page(request):
     return render(request, 'registration/welcome.html')
-
+def rate(request):
+    return render(request, 'rate.html')
 def search_results(request):
 
     if 'article' in request.GET and request.GET["article"]:
         search_term = request.GET.get("article")
-        searched_articles = Article.search_by_title(search_term)
+        searched_articles = Project.search_by_title(search_term)
         message = f"{search_term}"
 
         return render(request, 'search.html',{"message":message,"articles": searched_articles})

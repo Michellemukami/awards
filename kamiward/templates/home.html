@@ -1,28 +1,121 @@
 {%extends 'base.html'%}
 {%load static%}
+{% load bootstrap3 %}
 {% block content %}
 {{block.super}}
 <br><br>
-  <!-- posts from database come here -->
+<style>
+  
+.head p{
+  background-color: rgba(0,0,0,0.5)
+}
+.galleria{
+  background-image: url('https://i.pinimg.com/originals/33/07/82/3307827a7dc797a99fa3d37780ae9b10.gif');
+  background-repeat: no-repeat;
+  background-size:  cover;
+  color: white;
+  
+  font-family: 'Cookie' ,cursive;
+  font-style: italic;
+  font-size: 4.1em;
+  background-color: rgba(0,0,0,0.5);
+}
+.body{
+  font-family: fantasy;
+}
+.checked {
+  color: orange;
+}
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+  background-color:lightskyblue;
+}
+.kami {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  font-family: fantasy;
+  font-size: 10em;
+}
+.kami:hover .overlay {
+  opacity: 1;
+}
+
+
+.icon {
+  color: white;
+  font-size: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.fa-user:hover {
+  color: #eee;
+}
+.footer{
+  background-color:lightblue;
+}
+</style>
+  <div class="galleria">
+      <p class='text-center galleria'>Awards</p>
+    
+    </div>
   <div class="container">
+ 
     <div class="row " >
+       
+  
       <div  class="col-md-8 col-sm-3 work" >
+
         {% for post in posts %}
+        <div class="kami">
         <div class="photo card">
 
           <div class="card-header">
             <h5 id='red' class="card-title"><b>{{post.title}}</b></h5>
           </div>
-          <img src="{{post.project_image.url}}" class="card-img-top img-fluid" alt="dummy" width="100%">
-
-          <div class="card-body">
+          <img src="{{post.project_image.url}}" class="image" alt="dummy" width="100%"  data-toggle="modal" data-target="#{{post.title}}">
+          <div class="overlay">
+              <a href="{%url 'rate'%}" class="icon" title="VOTE NOW">
+                <i class="far fa-heart"></i>
+              </a>
+              </div>
+            </div>
+            </div>
+          
+          <div class="card">
+            <div class="card-body">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><i  class="far fa-comment" ></i></a>    <i class="far fa-heart">{{post.like}}</i></li>
-              <li class="list-group-item"><b>{{user.username}}</b> {% autoescape on%}{{post.image_caption|safe}}{% endautoescape %}</li>
+                <a href="{%url 'user'%}"><button type="button" class="btn btn-outline-secondary">More details</button></a>
+                <a href="{{post.url}}"><button type="button"class="btn btn-outline-warning">View project</button></a> <br> 
+              <strong>Rating overall:</strong><ul class=""><b><span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span></ul>
 
             </ul>
           </div>
-        </div><br>
+        </div>
+        <br>
 
         {% empty %}
           <div class="row">
@@ -30,37 +123,29 @@
           </div>
         {% endfor %}
       </div>
+      <div class="row">
       <div class="col-md-4 responsive ">
-        <div class="row">
+      
           <img style=" border-radius:25px"src="{{profile.profile_image.url}}" alt="hamna" height="50px" width="50px" class="rounded-circle"> <a href="{% url 'user'%}"><p style="color:black;font-weight:bolder;text-decoration:none;"><b>{{user.username}}</b></p></a>
-        </div><br>
-          <div class="row">
-            <div class="card" style="width: 18rem;">
-              <div class="card-header">
-                Stories
-              </div>
-
-              <ul class="list-group list-group-flush hide">
-                {% for user in users %}
-                <li class="list-group-item responsive">{{user.username}}</li>
-                {%endfor%}
-              </ul>
-
-            </div>
-          </div><br><br>
-          <div class="row">
-            <div class="card" style="width: 18rem;">
-              <div class="card-header">
-                Suggestions for you
-              </div>
-              <ul class="list-group list-group-flush hide">
-                {% for user in views %}
-                <li class="list-group-item responsive">{{user.username}}
-                  <a href="/profile/user/{{user.id}}"><button type="button" name="button">View profile</button></a></li>
-                {%endfor%}
-              </ul>
-            </div>
-          </div>
+        <br>
+          
+            
+                  <div class="card" style="width: 18rem;">
+                      <div class="card-body">
+                      <h5 class="card-title">
+                         <strong> Subscribe today!</strong>
+                      </h5> 
+                      <form  action="{%url 'home'%}" method="post">
+                          {%csrf_token%}
+                      
+                          {% bootstrap_form letterForm %}
+                          <input type="submit" value="Subscribe"class="btn btn-outline-secondary">
+                        </form>
+                      </div>
+                  </div>
+                      </div>
+                      </div>
+        
       </div>
     </div>
 
@@ -69,4 +154,34 @@
   body{font-family :'Gentium Basic', serif;
   }
   </style>
+  <footer>
+      <div class="footer">
+    <div class="container">
+      
+    <div class= "row">
+      <div class="col-md-4">
+     
+    <h1 style="font-family:'Lobster Two',sans-serif">
+      API
+    </h1>
+    <a href="http://127.0.0.1:8000/api/profile/Profile">Profile</a>
+    <br>
+    <a href="http://127.0.0.1:8000/api/project/">Projects</a>
+  </div>
+  <div class="col-md-4">
+      <h1 style="font-family:'Lobster Two',sans-serif">
+        Contact us
+      </h1>
+      <p>Contacts</p>
+    </div>
+    <div class="col-md-4">
+        <h1 style="font-family:'Lobster Two',sans-serif">
+          Know more of API
+        </h1>
+        <p>Know more</p>
+      </div>
+</div>
+</div>
+</div>
+  </footer>
 {% endblock %}

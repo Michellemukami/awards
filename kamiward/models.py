@@ -15,7 +15,7 @@ class Profile(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=60)
     post = HTMLField()
-    profile = models.ForeignKey(User,on_delete=models.CASCADE, null=False,default=1)
+    profile = models.ForeignKey(User, null=False,default=1)
     user = models.ForeignKey(Profile)
     pub_date = models.DateTimeField(auto_now_add=True)
     project_image = models.ImageField(upload_to='project/', blank=True)
@@ -35,8 +35,8 @@ class Project(models.Model):
     
     @classmethod
     def search_by_title(cls,search_term):
-        news = cls.objects.filter(title__icontains=search_term)
-        return news
+        posts = cls.objects.filter(title__icontains=search_term)
+        return posts
 
 class NewsLetterRecipients(models.Model):
     name = models.CharField(max_length = 30)

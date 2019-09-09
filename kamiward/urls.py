@@ -12,6 +12,7 @@ urlpatterns=[
     url('^$',views.profile,name ='profile'),
     url(r'^search/', views.search_results, name='search_results'),
     url(r'^user/',views.user,name ='user'),
+    url(r'^rate/',views.rate,name ='rate'),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^api/profile/', views.UserList.as_view()),
     url(r'^api/project/', views.ProjectList.as_view()),
