@@ -1,7 +1,7 @@
-#Awards
+# Awards
 A python application based on Django framework, 2019
-####Michelle Mukami
-##Description
+#### Michelle Mukami
+## Description
 
 This is an application that enables a authenticated user to post projects for other users to see. A user can click on an project to rate it and search for projects posted also can visit the projects web application .
 ## Cloning and running
@@ -24,11 +24,11 @@ Clone the application using git clone(this copies the app onto your device). In 
 ## Testing the Application
 To run the tests for the class file:
 
-##Known Bugs
+## Known Bugs
 
 NO known Bugs.
 
-##Behavior Driven Development
+## Behavior Driven Development
 
 | Behaviour    | Input     | Output|
 | :------------- | :------------- |:---------|
@@ -37,8 +37,8 @@ NO known Bugs.
 |Vote on project when clicked |Click image|Vote on image|
 
 
-##Technologies Used
-###main languages used are
+## Technologies Used
+### main languages used are
 
 * Python
 * Bootstrap
@@ -48,7 +48,7 @@ NO known Bugs.
 * JavaScript
 * CSS
 
-###Support and contact details
+### Support and contact details
 
 Please reach out to me at 'michellemukami.g@gmail.com' for any queries concerning this or any other code.
 License
