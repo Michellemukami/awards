@@ -1,15 +1,15 @@
-#Insta-kami
+#Awards
 A python application based on Django framework, 2019
 ####Michelle Mukami
 ##Description
 
-This is an application that enables a authenticated user to post images for other users to see. A user can click on an image to view it's details and search in my application for images based on users .
+This is an application that enables a authenticated user to post projects for other users to see. A user can click on an project to rate it and search for projects posted also can visit the projects web application .
 ## Cloning and running
 Clone the application using git clone(this copies the app onto your device). In your terminal:
 
   ```  $ git clone https://github.com/Michellemukami/insta-clone ```
   
-  ```  $ cd Instakami```
+  ```  $ cd Awards```
 
 ## Creating the virtual environment
 
